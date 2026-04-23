@@ -43,11 +43,12 @@
       font-family: 'Epilogue', system-ui, sans-serif;
       font-weight: 300;
       line-height: 1.6;
-      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
+    /* overflow-x on body causes scroll jank in iOS/Instagram browser — use clip instead */
+    html { overflow-x: clip; }
 
-    /* Grain */
+    /* Grain — transform: translateZ(0) promotes to own GPU layer, prevents scroll repaint */
     body::after {
       content: '';
       position: fixed;
@@ -57,6 +58,8 @@
       opacity: 0.025;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 220px 220px;
+      transform: translateZ(0);
+      will-change: transform;
     }
 
     /* ─── NAV ─── */
@@ -115,6 +118,7 @@
     .hero {
       position: relative;
       height: 100svh;
+      height: -webkit-fill-available;
       min-height: 680px;
       display: flex;
       align-items: flex-end;
@@ -774,9 +778,14 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 960px) {
-      nav { padding: 20px 24px; }
-      nav.scrolled { padding: 14px 24px; }
+      nav { padding: 20px 20px; }
+      nav.scrolled { padding: 14px 20px; }
       .nav-links { display: none; }
+      .nav-cta {
+        font-size: 10px;
+        padding: 9px 14px;
+        white-space: nowrap;
+      }
       .hero { padding: 0 24px 64px; }
       .container { padding: 0 24px; }
       .statement-grid { grid-template-columns: 1fr; gap: 16px; }
@@ -810,7 +819,7 @@
 
   <!-- ════ HERO ════ -->
   <section class="hero" id="home">
-    <video class="hero-video" autoplay muted loop playsinline>
+    <video class="hero-video" autoplay muted loop playsinline preload="auto">
       <source src="23-04-26-content/hero-video-main.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
@@ -1128,6 +1137,15 @@
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 50);
     }, { passive: true });
+
+    // Force video play — needed for Instagram in-app browser and some mobile browsers
+    const video = document.querySelector('.hero-video');
+    if (video) {
+      const tryPlay = () => video.play().catch(() => {});
+      tryPlay();
+      document.addEventListener('touchstart', tryPlay, { once: true });
+      document.addEventListener('click', tryPlay, { once: true });
+    }
 
     // Reveal
     const observer = new IntersectionObserver((entries) => {
