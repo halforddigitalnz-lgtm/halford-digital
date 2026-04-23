@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Halford Digital — Content & Advertising, New Zealand</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @font-face {
+      font-family: 'Epilogue';
+      src: url('brand-assets/Epilogue/Epilogue-VariableFont_wght.ttf') format('truetype');
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Epilogue';
+      src: url('brand-assets/Epilogue/Epilogue-Italic-VariableFont_wght.ttf') format('truetype');
+      font-weight: 100 900;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --bg:           #090909;
+      --surface:      #101010;
+      --elevated:     #181818;
+      --border:       rgba(255,255,255,0.07);
+      --border-med:   rgba(255,255,255,0.12);
+      --text:         #EDE9E2;
+      --muted:        #6E6B66;
+      --accent:       #C4923E;
+      --accent-light: #DBA95F;
+      --accent-dim:   rgba(196,146,62,0.1);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Epilogue', system-ui, sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grain */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 28px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.5s ease, padding 0.4s ease, border-color 0.5s ease;
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: rgba(9,9,9,0.9);
+      backdrop-filter: blur(24px) saturate(1.4);
+      -webkit-backdrop-filter: blur(24px) saturate(1.4);
+      padding: 18px 52px;
+      border-bottom-color: var(--border);
+    }
+    .nav-logo img { height: 20px; display: block; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; color: var(--text); }
+    .nav-cta {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 11px 26px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s ease, transform 0.15s cubic-bezier(0.16,1,0.3,1);
+    }
+    .nav-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
+    .nav-cta:active { transform: translateY(0); }
+    .nav-cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 680px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 52px 88px;
+      overflow: hidden;
+    }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.5;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 65% 35%, rgba(196,146,62,0.06) 0%, transparent 60%),
+        linear-gradient(to top,
+          rgba(9,9,9,1) 0%,
+          rgba(9,9,9,0.5) 50%,
+          rgba(9,9,9,0.25) 100%
+        );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .hero-heading {
+      font-size: clamp(52px, 7vw, 100px);
+      font-weight: 275;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+    .hero-heading .line {
+      display: block;
+    }
+    .hero-heading .line-accent {
+      color: var(--accent);
+      font-weight: 500;
+      font-style: italic;
+    }
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.72;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 44px;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--text);
+      padding: 16px 36px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s ease, transform 0.15s cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+    .btn-primary:active { transform: translateY(0); background: var(--accent); }
+    .btn-primary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .btn-secondary {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.2s ease;
+    }
+    .btn-secondary:hover { color: var(--text); }
+    .btn-secondary:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; color: var(--text); }
+    .btn-secondary .arr {
+      display: inline-block;
+      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-secondary:hover .arr { transform: translateX(4px); }
+
+    /* ─── SHARED ─── */
+    .container {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 52px;
+    }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+    .section-title {
+      font-size: clamp(36px, 4vw, 60px);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .section-index {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .eyebrow-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .eyebrow-label::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    /* ─── STATEMENT ─── */
+    .statement {
+      padding: 104px 0 96px;
+      border-top: 1px solid var(--border);
+    }
+    .statement-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .statement-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 8px;
+    }
+    .statement-text {
+      font-size: clamp(26px, 3vw, 44px);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+    }
+    .statement-text em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+    }
+
+    /* ─── HOW WE WORK (pillars) ─── */
+    .how {
+      padding: 0 0 104px;
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-left: 1px solid var(--border);
+    }
+    .pillar {
+      padding: 48px 40px 44px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s ease;
+    }
+    .pillar::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .pillar:hover { background: var(--surface); }
+    .pillar:hover::before { transform: scaleX(1); }
+    .pillar-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .pillar-title {
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .pillar-desc {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.72;
+      color: var(--muted);
+    }
+
+    /* ─── PRICING ─── */
+    .pricing {
+      padding: 0 0 40px;
+    }
+    .pricing-intro {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 56px;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin-bottom: 2px;
+    }
+    .pricing-card {
+      background: var(--surface);
+      padding: 44px 40px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.3s ease;
+    }
+    .pricing-card:hover { background: var(--elevated); }
+    .pricing-card.featured {
+      background: var(--elevated);
+      border: 1px solid var(--accent);
+    }
+    .pricing-card.featured::before {
+      content: 'CAPPED AT 3 CLIENTS';
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 4px 10px;
+    }
+    .pricing-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .pricing-name {
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .pricing-price {
+      font-size: 38px;
+      font-weight: 300;
+      letter-spacing: -0.035em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pricing-price span {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0;
+    }
+    .pricing-price-note {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .pricing-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 24px;
+    }
+    .pricing-desc {
+      font-size: 13.5px;
+      font-weight: 300;
+      line-height: 1.72;
+      color: var(--muted);
+      margin-bottom: 24px;
+      flex: 1;
+    }
+    .pricing-detail {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 12px 0;
+      border-top: 1px solid var(--border);
+    }
+    .pricing-cta {
+      margin-top: 24px;
+    }
+    .btn-card {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 12px 28px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s ease, transform 0.15s cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-card:hover { background: var(--accent-light); transform: translateY(-1px); }
+    .btn-card:active { transform: translateY(0); background: var(--accent); }
+    .btn-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .btn-card.ghost {
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--border);
+    }
+    .btn-card.ghost:hover { color: var(--text); border-color: var(--border-med); background: transparent; }
+    .btn-card.ghost:active { background: rgba(255,255,255,0.04); }
+    .btn-card.ghost:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+
+    /* Spend note */
+    .spend-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--accent);
+      padding: 20px 28px;
+      margin: 32px 0 48px;
+      font-size: 13.5px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+    .spend-note strong { color: var(--text); font-weight: 500; }
+
+    /* Add-ons */
+    .addons-head {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .addons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .addon-card {
+      background: var(--surface);
+      padding: 28px 32px;
+      transition: background 0.3s ease;
+    }
+    .addon-card:hover { background: var(--elevated); }
+    .addon-price {
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .addon-name {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .addon-desc {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    /* ─── WORK / VISUAL SHOWCASE ─── */
+    .work { padding: 96px 0 104px; }
+    .work-intro {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 56px;
+    }
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+    }
+    .work-item {
+      position: relative;
+      overflow: hidden;
+    }
+    .work-item.span2 { grid-column: 1 / -1; }
+    .work-img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      opacity: 0.85;
+      transform: scale(1.04);
+      transition: transform 0.9s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease;
+    }
+    .work-item.span2 .work-img { aspect-ratio: 21/9; object-position: center 30%; }
+    .work-item:not(.span2) .work-img { aspect-ratio: 4/3; object-position: center top; }
+    .work-item:hover .work-img { transform: scale(1.08); opacity: 1; }
+
+    /* Colour treatment layer — mix-blend-multiply amber tint */
+    .work-tint {
+      position: absolute;
+      inset: 0;
+      background: rgba(196,146,62,0.18);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .work-item:hover .work-tint { opacity: 1; }
+
+    .work-cover {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(9,9,9,0.8) 0%, transparent 55%);
+      display: flex;
+      align-items: flex-end;
+      padding: 24px 28px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .work-item:hover .work-cover { opacity: 1; }
+    .work-tag {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(9,9,9,0.7);
+      padding: 5px 12px;
+    }
+
+    /* ─── ABOUT ─── */
+    .about {
+      padding: 104px 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 88px;
+      align-items: center;
+    }
+    .about-img-wrap { position: relative; }
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .about-img-border {
+      position: absolute;
+      bottom: -18px;
+      right: -18px;
+      width: 52%;
+      height: 52%;
+      border: 1px solid var(--accent);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .about-kicker {
+      font-size: 28px;
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .about-heading {
+      font-size: clamp(34px, 3.5vw, 52px);
+      font-weight: 275;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin-bottom: 28px;
+    }
+    .about-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact {
+      padding: 120px 0 112px;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(196,146,62,0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .contact-inner {
+      text-align: center;
+      position: relative;
+    }
+    .contact-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .contact-heading {
+      font-size: clamp(48px, 6.5vw, 96px);
+      font-weight: 275;
+      line-height: 1.0;
+      letter-spacing: -0.035em;
+      margin-bottom: 20px;
+    }
+    .contact-heading em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+    }
+    .contact-sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 400px;
+      margin: 0 auto 44px;
+      line-height: 1.75;
+    }
+    .contact-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .contact-email {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 3px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .contact-email:hover { color: var(--text); border-color: var(--border-med); }
+    .contact-email:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 28px 52px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo img { height: 16px; display: block; }
+    .footer-copy { font-size: 12px; font-weight: 300; color: var(--muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ─── REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        opacity 0.85s cubic-bezier(0.16,1,0.3,1),
+        transform 0.85s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+
+    /* ─── HERO ENTRANCE ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content .hero-eyebrow  { opacity:0; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.2s forwards; }
+    .hero-content .hero-heading  { opacity:0; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.4s forwards; }
+    .hero-content .hero-sub      { opacity:0; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.6s forwards; }
+    .hero-content .hero-actions  { opacity:0; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.8s forwards; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 0 24px 64px; }
+      .container { padding: 0 24px; }
+      .statement-grid { grid-template-columns: 1fr; gap: 16px; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .addons-grid { grid-template-columns: 1fr; }
+      .work-grid { grid-template-columns: 1fr; }
+      .work-item.span2 { grid-column: 1; }
+      .work-item.span2 .work-img { aspect-ratio: 16/9; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-img-border { display: none; }
+      footer { padding: 24px; flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════ NAV ════ -->
+  <nav id="nav">
+    <div class="nav-logo">
+      <img src="brand-assets/logo-white.png" alt="Halford Digital">
+    </div>
+    <div class="nav-links">
+      <a href="#how">How We Work</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+    </div>
+    <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="nav-cta">Book a Call</a>
+  </nav>
+
+  <!-- ════ HERO ════ -->
+  <section class="hero" id="home">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="23-04-26-content/hero-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Content &amp; Advertising &nbsp;·&nbsp; New Zealand</div>
+      <h1 class="hero-heading">
+        <span class="line">We make it.</span>
+        <span class="line">We run it.</span>
+        <span class="line line-accent">You grow.</span>
+      </h1>
+      <p class="hero-sub">
+        Halford Digital builds end-to-end content and advertising systems —
+        created in-house, distributed through paid platforms,
+        designed to grow your business online.
+      </p>
+      <div class="hero-actions">
+        <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="btn-primary">
+          Book a free discovery call
+        </a>
+        <a href="#how" class="btn-secondary">
+          See how it works <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ STATEMENT ════ -->
+  <section class="statement">
+    <div class="container">
+      <div class="statement-grid reveal">
+        <div class="statement-label">The offer</div>
+        <p class="statement-text">
+          Halford Digital makes the content, runs the ads, and grows the business —
+          <em>end-to-end, in-house,</em> for a small number of clients at a time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ HOW WE WORK ════ -->
+  <section class="how" id="how">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2 class="section-title">How We Work</h2>
+        <span class="section-index">01</span>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar reveal">
+          <div class="pillar-num">01</div>
+          <h3 class="pillar-title">We make it</h3>
+          <p class="pillar-desc">
+            Video, photo, design, and copy — all produced in-house by
+            Tom and Alex. No freelancers, no handoffs, no surprises.
+          </p>
+        </div>
+        <div class="pillar reveal reveal-d1">
+          <div class="pillar-num">02</div>
+          <h3 class="pillar-title">We run it</h3>
+          <p class="pillar-desc">
+            Paid campaigns on Meta and Google, plus organic social
+            where it earns its place. One team owns the full stack.
+          </p>
+        </div>
+        <div class="pillar reveal reveal-d2">
+          <div class="pillar-num">03</div>
+          <h3 class="pillar-title">We measure it</h3>
+          <p class="pillar-desc">
+            Monthly reporting, creative testing, and ongoing
+            optimisation — so you always know what's working and why.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ PRICING ════ -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2 class="section-title">What It Costs</h2>
+        <span class="section-index">02</span>
+      </div>
+
+      <p class="pricing-intro reveal">
+        Straight-forward retainers and one-off projects. Ad spend is always
+        excluded and discussed on your discovery call — we'll tell you exactly
+        what we recommend before you commit to anything.
+      </p>
+
+      <div class="pricing-grid">
+
+        <!-- Growth Retainer -->
+        <div class="pricing-card reveal">
+          <div class="pricing-badge">Retainer</div>
+          <div class="pricing-name">Growth</div>
+          <div class="pricing-price">from $1,950<span>/mo</span></div>
+          <div class="pricing-price-note">Ad spend excluded &nbsp;·&nbsp; 3-month minimum</div>
+          <div class="pricing-divider"></div>
+          <div class="pricing-desc">
+            ~4 videos + 8 stills per month. Meta &amp; Google campaign management. Monthly performance reporting. Ideal for businesses ready to grow consistently.
+          </div>
+          <div class="pricing-detail">Recommended ad spend: $1,500+/mo</div>
+          <div class="pricing-cta">
+            <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="btn-card ghost">Book a call →</a>
+          </div>
+        </div>
+
+        <!-- Performance Retainer -->
+        <div class="pricing-card featured reveal reveal-d1">
+          <div class="pricing-badge">Retainer</div>
+          <div class="pricing-name">Performance</div>
+          <div class="pricing-price">from $4,500<span>/mo</span></div>
+          <div class="pricing-price-note">Ad spend excluded &nbsp;·&nbsp; 6-month minimum</div>
+          <div class="pricing-divider"></div>
+          <div class="pricing-desc">
+            8–12 videos per month. Multi-channel campaigns. Dedicated landing pages. Bi-weekly reporting. Direct Slack access to Tom and Alex.
+          </div>
+          <div class="pricing-detail">Recommended ad spend: $5,000+/mo</div>
+          <div class="pricing-cta">
+            <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="btn-card">Book a call →</a>
+          </div>
+        </div>
+
+        <!-- Website Sprint -->
+        <div class="pricing-card reveal">
+          <div class="pricing-badge">One-off</div>
+          <div class="pricing-name">Website Sprint</div>
+          <div class="pricing-price">from $4,500<span> fixed</span></div>
+          <div class="pricing-price-note">~2-week turnaround &nbsp;·&nbsp; One-off</div>
+          <div class="pricing-divider"></div>
+          <div class="pricing-desc">
+            5–7 sections. Copywriting, design, and development included. Hosting setup. Everything you need to launch a site that converts, done.
+          </div>
+          <div class="pricing-detail">No ongoing commitment required</div>
+          <div class="pricing-cta">
+            <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="btn-card ghost">Book a call →</a>
+          </div>
+        </div>
+
+        <!-- Bespoke -->
+        <div class="pricing-card reveal reveal-d1">
+          <div class="pricing-badge">Custom</div>
+          <div class="pricing-name">Bespoke&nbsp;/ Brand Campaigns</div>
+          <div class="pricing-price">POA</div>
+          <div class="pricing-price-note">Scoped per project &nbsp;·&nbsp; From $10k</div>
+          <div class="pricing-divider"></div>
+          <div class="pricing-desc">
+            Launches, brand films, multi-month productions. If you have something bigger in mind, let's talk — we'll scope it together on a call.
+          </div>
+          <div class="pricing-detail">Custom timeline and deliverables</div>
+          <div class="pricing-cta">
+            <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="btn-card ghost">Get in touch →</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Ad spend note -->
+      <div class="spend-note reveal">
+        <strong>A note on ad spend:</strong> Our retainer fees cover creative production and campaign management — ad spend is a separate budget paid directly to the platforms. We recommend <strong>$1,500/mo minimum</strong> for Growth and <strong>$5,000/mo minimum</strong> for Performance. We'll discuss this on your discovery call before any commitment is made.
+      </div>
+
+      <!-- Add-ons -->
+      <div class="reveal">
+        <div class="addons-head">Add-ons</div>
+        <div class="addons-grid">
+          <div class="addon-card">
+            <div class="addon-price">$1,800</div>
+            <div class="addon-name">Shoot Day</div>
+            <div class="addon-desc">One shooter, edited deliverables within 7 days. Great for building a content bank between retainer cycles.</div>
+          </div>
+          <div class="addon-card">
+            <div class="addon-price">$2,500</div>
+            <div class="addon-name">Brand Refresh</div>
+            <div class="addon-desc">Logo refinement, colour palette, type system, and a simple brand guidelines document.</div>
+          </div>
+          <div class="addon-card">
+            <div class="addon-price">$750</div>
+            <div class="addon-name">Ad Audit</div>
+            <div class="addon-desc">Written report on your existing Meta or Google account, plus a 30-minute walkthrough call with Tom and Alex.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════ WORK / VISUAL ════ -->
+  <section class="work" id="work">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2 class="section-title">The Work</h2>
+        <span class="section-index">03</span>
+      </div>
+      <p class="work-intro reveal">
+        A sample of the content we create — shot and edited in-house.
+        From campaign videos to product photography, everything is built to perform.
+      </p>
+      <div class="work-grid">
+        <div class="work-item span2 reveal">
+          <img class="work-img" src="23-04-26-content/062.PNG" alt="Product content">
+          <div class="work-tint"></div>
+          <div class="work-cover">
+            <div class="work-tag">Product Content</div>
+          </div>
+        </div>
+        <div class="work-item reveal">
+          <img class="work-img" src="23-04-26-content/018.PNG" alt="Campaign photography">
+          <div class="work-tint"></div>
+          <div class="work-cover">
+            <div class="work-tag">Campaign Photography</div>
+          </div>
+        </div>
+        <div class="work-item reveal reveal-d1">
+          <img class="work-img" src="23-04-26-content/_MG_9967.jpg" alt="Creative direction">
+          <div class="work-tint"></div>
+          <div class="work-cover">
+            <div class="work-tag">Creative Direction</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ ABOUT ════ -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal">
+          <img class="about-img" src="23-04-26-content/IMG_0055.jpg" alt="Tom and Alex Halford">
+          <div class="about-img-border"></div>
+        </div>
+        <div class="reveal reveal-d1">
+          <div class="eyebrow-label">About Us</div>
+          <div class="about-kicker">Two brothers.<br>One vision.</div>
+          <h2 class="about-heading">Halford Digital</h2>
+          <p class="about-body">
+            Halford Digital is a Tasman-based creative agency run by brothers
+            Tom and Alex Halford. We started this because too many businesses
+            were stuck with generic marketing that didn't reflect who they
+            actually were.
+          </p>
+          <p class="about-body">
+            Working as brothers means we challenge each other, back each other,
+            and bring complementary strengths to every project — so our clients
+            get a team that's genuinely invested in the people behind the
+            business, not just the work.
+          </p>
+          <p class="about-body">
+            We're here for the long game.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ CONTACT ════ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-inner reveal">
+        <div class="contact-eyebrow">Let's Talk</div>
+        <h2 class="contact-heading">
+          Ready to<br>
+          <em>start growing?</em>
+        </h2>
+        <p class="contact-sub">
+          Book a free 30-minute discovery call. No commitment —
+          just an honest conversation about what's possible.
+        </p>
+        <div class="contact-actions">
+          <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="btn-primary">
+            Book a free discovery call
+          </a>
+        </div>
+        <a href="mailto:hello@halforddigital.co.nz" class="contact-email">
+          hello@halforddigital.co.nz
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ FOOTER ════ -->
+  <footer>
+    <div class="footer-logo">
+      <img src="brand-assets/logo-white.png" alt="Halford Digital">
+    </div>
+    <span class="footer-copy">© 2026 Halford Digital. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:hello@halforddigital.co.nz">Email</a>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // Reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -32px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
