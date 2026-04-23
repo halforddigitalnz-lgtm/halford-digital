@@ -334,12 +334,20 @@
     }
     .pillar:hover { background: var(--surface); }
     .pillar:hover::before { transform: scaleX(1); }
-    .pillar-num {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      color: var(--accent);
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
       margin-bottom: 28px;
+      color: var(--accent);
+    }
+    .pillar-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
     .pillar-title {
       font-size: 28px;
@@ -802,8 +810,9 @@
 
   <!-- ════ HERO ════ -->
   <section class="hero" id="home">
-    <video class="hero-video" autoplay muted loop playsinline>
+    <video class="hero-video" autoplay muted loop playsinline poster="23-04-26-content/_MG_9967.jpg">
       <source src="23-04-26-content/hero-video.mp4" type="video/mp4">
+      <source src="23-04-26-content/wip-video.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -851,7 +860,14 @@
       </div>
       <div class="pillars-grid">
         <div class="pillar reveal">
-          <div class="pillar-num">01</div>
+          <div class="pillar-icon">
+            <!-- Camera / content creation -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 10l4.553-2.277A1 1 0 0121 8.723v6.554a1 1 0 01-1.447.894L15 14"/>
+              <rect x="2" y="7" width="13" height="11" rx="2"/>
+              <circle cx="8.5" cy="12.5" r="2"/>
+            </svg>
+          </div>
           <h3 class="pillar-title">We make it</h3>
           <p class="pillar-desc">
             Video, photo, design, and copy — all produced in-house by
@@ -859,7 +875,12 @@
           </p>
         </div>
         <div class="pillar reveal reveal-d1">
-          <div class="pillar-num">02</div>
+          <div class="pillar-icon">
+            <!-- Megaphone / advertising -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 11l19-9-9 19-2-8-8-2z"/>
+            </svg>
+          </div>
           <h3 class="pillar-title">We run it</h3>
           <p class="pillar-desc">
             Paid campaigns on Meta and Google, plus organic social
@@ -867,7 +888,15 @@
           </p>
         </div>
         <div class="pillar reveal reveal-d2">
-          <div class="pillar-num">03</div>
+          <div class="pillar-icon">
+            <!-- Bar chart / analytics -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+              <line x1="2" y1="20" x2="22" y2="20"/>
+            </svg>
+          </div>
           <h3 class="pillar-title">We measure it</h3>
           <p class="pillar-desc">
             Monthly reporting, creative testing, and ongoing
@@ -1091,7 +1120,7 @@
     </div>
     <span class="footer-copy">© 2026 Halford Digital. All rights reserved.</span>
     <div class="footer-links">
-      <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.instagram.com/halforddigital/" target="_blank" rel="noopener">Instagram</a>
       <a href="mailto:hello@halforddigital.co.nz">Email</a>
     </div>
   </footer>

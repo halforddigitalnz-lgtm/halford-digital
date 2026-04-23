@@ -2,9 +2,9 @@
 temporary screenshots/
 
 # Large video files that exceed GitHub's 100MB limit
+# hero-video.mp4 (112MB) must be uploaded manually to your server/CDN
 23-04-26-content/hero-video.mp4
 23-04-26-content/banner-video.mp4
-23-04-26-content/wip-video.mp4
 23-04-26-content/STEVE.MP4
 23-04-26-content/P1036122.MOV_Rendered_001.MOV
 
