@@ -610,6 +610,69 @@
       padding: 5px 12px;
     }
 
+    /* ─── TESTIMONIALS ─── */
+    .testimonials {
+      padding: 96px 0 104px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse, rgba(196,146,62,0.04) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .testi-wrap {
+      position: relative;
+      max-width: 940px;
+    }
+    .testi-quote-mark {
+      font-size: 180px;
+      line-height: 0.75;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--accent);
+      opacity: 0.18;
+      user-select: none;
+      pointer-events: none;
+      margin-bottom: 8px;
+      display: block;
+      letter-spacing: -0.04em;
+    }
+    .testi-body {
+      font-size: clamp(18px, 2.2vw, 24px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.72;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 44px;
+    }
+    .testi-attribution {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .testi-rule {
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .testi-name {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
     /* ─── ABOUT ─── */
     .about {
       padding: 104px 0;
@@ -798,6 +861,8 @@
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .about-img-border { display: none; }
       footer { padding: 24px; flex-direction: column; gap: 16px; text-align: center; }
+      .testi-quote-mark { font-size: 120px; }
+      .testi-body { font-size: 18px; }
     }
   </style>
 </head>
@@ -812,6 +877,7 @@
       <a href="#how">How We Work</a>
       <a href="#pricing">Pricing</a>
       <a href="#work">Work</a>
+      <a href="#testimonials">Reviews</a>
       <a href="#about">About</a>
     </div>
     <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="nav-cta">Book a Call</a>
@@ -1057,6 +1123,30 @@
           <div class="work-cover">
             <div class="work-tag">Creative Direction</div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ TESTIMONIALS ════ -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2 class="section-title">What They Say</h2>
+        <span class="section-index">04</span>
+      </div>
+      <div class="testi-wrap reveal reveal-d1">
+        <span class="testi-quote-mark">"</span>
+        <blockquote class="testi-body">
+          I have loved working with Tom and Alex at Halford Digital. They are professional, focused, and
+          enthusiastic about helping my business grow. They explain things in easy terms, come up with great
+          marketing ideas, and make the process of digital marketing fun and exciting. They have a fresh and
+          modern approach where anything is possible. I can highly recommend them to any business wanting to
+          re-fresh their brand, create a new website, or help with marketing strategies.
+        </blockquote>
+        <div class="testi-attribution">
+          <div class="testi-rule"></div>
+          <span class="testi-name">Rosie Hickling</span>
         </div>
       </div>
     </div>
