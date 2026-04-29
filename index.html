@@ -771,19 +771,87 @@
       font-size: 15px;
       font-weight: 300;
       color: var(--muted);
-      max-width: 400px;
-      margin: 0 auto 44px;
+      max-width: 440px;
+      margin: 0 auto 48px;
       line-height: 1.75;
     }
-    .contact-actions {
+    .contact-form {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 36px;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .form-field { display: flex; flex-direction: column; gap: 7px; }
+    .form-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-input,
+    .form-textarea {
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Epilogue', system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      padding: 13px 16px;
+      width: 100%;
+      outline: none;
+      -webkit-appearance: none;
+      transition: border-color 0.2s ease;
+    }
+    .form-input:focus,
+    .form-textarea:focus { border-color: var(--accent); }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: var(--muted); opacity: 0.45; }
+    .form-textarea { min-height: 120px; resize: vertical; line-height: 1.65; }
+    .form-submit {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--text);
+      border: none;
+      padding: 16px 36px;
+      width: 100%;
+      cursor: pointer;
+      font-family: 'Epilogue', system-ui, sans-serif;
+      transition: background 0.2s ease, transform 0.15s cubic-bezier(0.16,1,0.3,1);
+    }
+    .form-submit:hover { background: var(--accent-light); transform: translateY(-2px); }
+    .form-submit:active { transform: translateY(0); background: var(--accent); }
+    .form-submit:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .form-success {
+      font-size: 16px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--accent);
+      padding: 48px 0;
+      text-align: center;
+      line-height: 1.7;
+    }
+    .form-error {
+      font-size: 12px;
+      color: #e06060;
+      margin-top: 6px;
+      text-align: center;
     }
     .contact-email {
+      display: block;
+      margin-top: 32px;
       font-size: 13px;
       font-weight: 400;
       letter-spacing: 0.1em;
@@ -863,6 +931,7 @@
       footer { padding: 24px; flex-direction: column; gap: 16px; text-align: center; }
       .testi-quote-mark { font-size: 120px; }
       .testi-body { font-size: 18px; }
+      .form-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -880,7 +949,7 @@
       <a href="#testimonials">Reviews</a>
       <a href="#about">About</a>
     </div>
-    <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="nav-cta">Book a Call</a>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
   </nav>
 
   <!-- ════ HERO ════ -->
@@ -902,8 +971,8 @@
         designed to grow your business online.
       </p>
       <div class="hero-actions">
-        <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="btn-primary">
-          Book a free discovery call
+        <a href="#contact" class="btn-primary">
+          Get a free audit
         </a>
         <a href="#how" class="btn-secondary">
           See how it works <span class="arr">→</span>
@@ -989,8 +1058,8 @@
 
       <p class="pricing-intro reveal">
         Straight-forward retainers and one-off projects. Ad spend is always
-        excluded and discussed on your discovery call — we'll tell you exactly
-        what we recommend before you commit to anything.
+        excluded — we'll tell you exactly what we recommend before you commit
+        to anything.
       </p>
 
       <div class="pricing-grid">
@@ -1007,7 +1076,7 @@
           </div>
           <div class="pricing-detail">Recommended ad spend: $1,500+/mo</div>
           <div class="pricing-cta">
-            <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="btn-card ghost">Book a call →</a>
+            <a href="#contact" class="btn-card ghost">Get in touch →</a>
           </div>
         </div>
 
@@ -1023,7 +1092,7 @@
           </div>
           <div class="pricing-detail">Recommended ad spend: $5,000+/mo</div>
           <div class="pricing-cta">
-            <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="btn-card">Book a call →</a>
+            <a href="#contact" class="btn-card">Get in touch →</a>
           </div>
         </div>
 
@@ -1039,7 +1108,7 @@
           </div>
           <div class="pricing-detail">No ongoing commitment required</div>
           <div class="pricing-cta">
-            <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="btn-card ghost">Book a call →</a>
+            <a href="#contact" class="btn-card ghost">Get in touch →</a>
           </div>
         </div>
 
@@ -1051,11 +1120,11 @@
           <div class="pricing-price-note">Scoped per project &nbsp;·&nbsp; From $10k</div>
           <div class="pricing-divider"></div>
           <div class="pricing-desc">
-            Launches, brand films, multi-month productions. If you have something bigger in mind, let's talk — we'll scope it together on a call.
+            Launches, brand films, multi-month productions. If you have something bigger in mind, let's talk — we'll scope it together.
           </div>
           <div class="pricing-detail">Custom timeline and deliverables</div>
           <div class="pricing-cta">
-            <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="btn-card ghost">Get in touch →</a>
+            <a href="#contact" class="btn-card ghost">Get in touch →</a>
           </div>
         </div>
 
@@ -1063,7 +1132,7 @@
 
       <!-- Ad spend note -->
       <div class="spend-note reveal">
-        <strong>A note on ad spend:</strong> Our retainer fees cover creative production and campaign management — ad spend is a separate budget paid directly to the platforms. We recommend <strong>$1,500/mo minimum</strong> for Growth and <strong>$5,000/mo minimum</strong> for Performance. We'll discuss this on your discovery call before any commitment is made.
+        <strong>A note on ad spend:</strong> Our retainer fees cover creative production and campaign management — ad spend is a separate budget paid directly to the platforms. We recommend <strong>$1,500/mo minimum</strong> for Growth and <strong>$5,000/mo minimum</strong> for Performance. We'll go through this before any commitment is made.
       </div>
 
       <!-- Add-ons -->
@@ -1194,14 +1263,31 @@
           <em>start growing?</em>
         </h2>
         <p class="contact-sub">
-          Book a free 30-minute discovery call. No commitment —
-          just an honest conversation about what's possible.
+          Send us a message and we'll get in touch to arrange your
+          free 20-min audit. No commitment — just an honest look
+          at what's possible for your business.
         </p>
-        <div class="contact-actions">
-          <a href="https://cal.com/halford-digital" target="_blank" rel="noopener" class="btn-primary">
-            Book a free discovery call
-          </a>
-        </div>
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="cf-name">Your name</label>
+              <input class="form-input" id="cf-name" name="name" type="text" placeholder="Jane Smith" required>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="cf-business">Business name</label>
+              <input class="form-input" id="cf-business" name="business" type="text" placeholder="Acme Co.">
+            </div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="cf-email">Email address</label>
+            <input class="form-input" id="cf-email" name="email" type="email" placeholder="jane@yourbusiness.com" required>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="cf-message">What are you looking to achieve?</label>
+            <textarea class="form-textarea" id="cf-message" name="message" placeholder="Tell us a bit about your business and what you'd like to grow…" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send message</button>
+        </form>
         <a href="mailto:hello@halforddigital.co.nz" class="contact-email">
           hello@halforddigital.co.nz
         </a>
@@ -1247,6 +1333,47 @@
       });
     }, { threshold: 0.07, rootMargin: '0px 0px -32px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Contact form
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = contactForm.querySelector('.form-submit');
+        const prevText = btn.textContent;
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        const existing = contactForm.querySelector('.form-error');
+        if (existing) existing.remove();
+
+        const data = {
+          name: contactForm.querySelector('[name="name"]').value,
+          business: contactForm.querySelector('[name="business"]').value,
+          email: contactForm.querySelector('[name="email"]').value,
+          message: contactForm.querySelector('[name="message"]').value,
+        };
+
+        try {
+          const res = await fetch('https://formsubmit.co/ajax/hello@halforddigital.co.nz', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ ...data, _subject: 'New enquiry from Halford Digital website' }),
+          });
+          if (res.ok) {
+            contactForm.innerHTML = '<p class="form-success">Message received — we\'ll be in touch shortly to arrange your free audit.</p>';
+          } else {
+            throw new Error();
+          }
+        } catch {
+          btn.textContent = prevText;
+          btn.disabled = false;
+          const err = document.createElement('p');
+          err.className = 'form-error';
+          err.textContent = 'Something went wrong. Please email us directly at hello@halforddigital.co.nz';
+          contactForm.appendChild(err);
+        }
+      });
+    }
   </script>
 
 </body>
