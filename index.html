@@ -379,9 +379,19 @@
       max-width: 640px;
       margin-bottom: 56px;
     }
+    .pricing-section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 2px;
       margin-bottom: 2px;
     }
@@ -399,7 +409,7 @@
       border: 1px solid var(--accent);
     }
     .pricing-card.featured::before {
-      content: 'CAPPED AT 3 CLIENTS';
+      content: 'LIMITED SPOTS';
       position: absolute;
       top: 16px;
       right: 20px;
@@ -447,28 +457,35 @@
     .pricing-divider {
       height: 1px;
       background: var(--border);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
-    .pricing-desc {
-      font-size: 13.5px;
-      font-weight: 300;
-      line-height: 1.72;
-      color: var(--muted);
-      margin-bottom: 24px;
+    .pricing-attrs {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 28px;
       flex: 1;
     }
-    .pricing-detail {
-      font-size: 12px;
+    .pricing-attr {
+      display: flex;
+      align-items: baseline;
+      gap: 0;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+    .attr-label {
+      font-size: 10px;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
-      padding: 12px 0;
-      border-top: 1px solid var(--border);
+      min-width: 76px;
+      flex-shrink: 0;
     }
-    .pricing-cta {
-      margin-top: 24px;
-    }
+    .attr-value { color: var(--text); }
+    .pricing-cta { margin-top: 24px; }
     .btn-card {
       font-size: 11px;
       font-weight: 600;
@@ -493,30 +510,34 @@
     .btn-card.ghost:active { background: rgba(255,255,255,0.04); }
     .btn-card.ghost:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
 
-    /* Spend note */
-    .spend-note {
+    /* Partnerships includes callout */
+    .pricing-includes {
       background: var(--surface);
       border: 1px solid var(--border);
       border-left: 2px solid var(--accent);
-      padding: 20px 28px;
-      margin: 32px 0 48px;
+      padding: 18px 28px;
+      margin: 2px 0 56px;
       font-size: 13.5px;
       font-weight: 300;
       line-height: 1.65;
       color: var(--muted);
     }
-    .spend-note strong { color: var(--text); font-weight: 500; }
+    .pricing-includes strong { color: var(--text); font-weight: 500; }
 
-    /* Add-ons */
+    /* One-off projects */
     .addons-head {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 24px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
     }
     .addons-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 2px;
     }
     .addon-card {
@@ -922,7 +943,7 @@
       .statement-grid { grid-template-columns: 1fr; gap: 16px; }
       .pillars-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
-      .addons-grid { grid-template-columns: 1fr; }
+      .addons-grid { grid-template-columns: 1fr 1fr; }
       .work-grid { grid-template-columns: 1fr; }
       .work-item.span2 { grid-column: 1; }
       .work-item.span2 .work-img { aspect-ratio: 16/9; }
@@ -972,7 +993,7 @@
       </p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">
-          Get a free audit
+          Book a free 20-min audit
         </a>
         <a href="#how" class="btn-secondary">
           See how it works <span class="arr">→</span>
@@ -987,8 +1008,8 @@
       <div class="statement-grid reveal">
         <div class="statement-label">The offer</div>
         <p class="statement-text">
-          Halford Digital makes the content, runs the ads, and grows the business —
-          <em>end-to-end, in-house,</em> for a small number of clients at a time.
+          One way in: a free 20-min audit. We review your website, ads, and socials beforehand — then walk you through what we see and what we'd do.
+          <em>From there, you pick what you need.</em>
         </p>
       </div>
     </div>
@@ -1057,72 +1078,64 @@
       </div>
 
       <p class="pricing-intro reveal">
-        Straight-forward retainers and one-off projects. Ad spend is always
-        excluded — we'll tell you exactly what we recommend before you commit
-        to anything.
+        One way in, two ways out. Start with a free 20-min audit —
+        then choose an ongoing partnership or a one-off project.
+        No paid planning, no hoops.
       </p>
 
+      <!-- Partnership tiers -->
+      <div class="pricing-section-label reveal">Ongoing partnership</div>
       <div class="pricing-grid">
 
-        <!-- Growth Retainer -->
+        <!-- Foundation Partner -->
         <div class="pricing-card reveal">
-          <div class="pricing-badge">Retainer</div>
-          <div class="pricing-name">Growth</div>
-          <div class="pricing-price">from $1,950<span>/mo</span></div>
-          <div class="pricing-price-note">Ad spend excluded &nbsp;·&nbsp; 3-month minimum</div>
+          <div class="pricing-badge">Partnership</div>
+          <div class="pricing-name">Foundation</div>
+          <div class="pricing-price">from $2,500<span>/mo</span></div>
+          <div class="pricing-price-note">3-month minimum &nbsp;·&nbsp; rolling after</div>
           <div class="pricing-divider"></div>
-          <div class="pricing-desc">
-            ~4 videos + 8 stills per month. Meta &amp; Google campaign management. Monthly performance reporting. Ideal for businesses ready to grow consistently.
-          </div>
-          <div class="pricing-detail">Recommended ad spend: $1,500+/mo</div>
+          <ul class="pricing-attrs">
+            <li class="pricing-attr"><span class="attr-label">Capacity</span><span class="attr-value">~4 production days/mo</span></li>
+            <li class="pricing-attr"><span class="attr-label">Channels</span><span class="attr-value">1 primary channel</span></li>
+            <li class="pricing-attr"><span class="attr-label">Reviews</span><span class="attr-value">Monthly 60-min strategy</span></li>
+            <li class="pricing-attr"><span class="attr-label">Comms</span><span class="attr-value">Response within 24 hrs</span></li>
+          </ul>
           <div class="pricing-cta">
             <a href="#contact" class="btn-card ghost">Get in touch →</a>
           </div>
         </div>
 
-        <!-- Performance Retainer -->
+        <!-- Growth Partner (featured) -->
         <div class="pricing-card featured reveal reveal-d1">
-          <div class="pricing-badge">Retainer</div>
-          <div class="pricing-name">Performance</div>
+          <div class="pricing-badge">Partnership</div>
+          <div class="pricing-name">Growth</div>
           <div class="pricing-price">from $4,500<span>/mo</span></div>
-          <div class="pricing-price-note">Ad spend excluded &nbsp;·&nbsp; 6-month minimum</div>
+          <div class="pricing-price-note">3-month minimum &nbsp;·&nbsp; rolling after</div>
           <div class="pricing-divider"></div>
-          <div class="pricing-desc">
-            8–12 videos per month. Multi-channel campaigns. Dedicated landing pages. Bi-weekly reporting. Direct Slack access to Tom and Alex.
-          </div>
-          <div class="pricing-detail">Recommended ad spend: $5,000+/mo</div>
+          <ul class="pricing-attrs">
+            <li class="pricing-attr"><span class="attr-label">Capacity</span><span class="attr-value">~8 production days/mo</span></li>
+            <li class="pricing-attr"><span class="attr-label">Channels</span><span class="attr-value">Multi-channel</span></li>
+            <li class="pricing-attr"><span class="attr-label">Reviews</span><span class="attr-value">Monthly 90-min + bi-weekly 30-min</span></li>
+            <li class="pricing-attr"><span class="attr-label">Comms</span><span class="attr-value">Response within 4 hrs</span></li>
+          </ul>
           <div class="pricing-cta">
             <a href="#contact" class="btn-card">Get in touch →</a>
           </div>
         </div>
 
-        <!-- Website Sprint -->
-        <div class="pricing-card reveal">
-          <div class="pricing-badge">One-off</div>
-          <div class="pricing-name">Website Sprint</div>
-          <div class="pricing-price">from $4,500<span> fixed</span></div>
-          <div class="pricing-price-note">~2-week turnaround &nbsp;·&nbsp; One-off</div>
+        <!-- Bespoke Partner -->
+        <div class="pricing-card reveal reveal-d2">
+          <div class="pricing-badge">Partnership</div>
+          <div class="pricing-name">Bespoke</div>
+          <div class="pricing-price">from $8,000<span>/mo</span></div>
+          <div class="pricing-price-note">6-month minimum &nbsp;·&nbsp; POA</div>
           <div class="pricing-divider"></div>
-          <div class="pricing-desc">
-            5–7 sections. Copywriting, design, and development included. Hosting setup. Everything you need to launch a site that converts, done.
-          </div>
-          <div class="pricing-detail">No ongoing commitment required</div>
-          <div class="pricing-cta">
-            <a href="#contact" class="btn-card ghost">Get in touch →</a>
-          </div>
-        </div>
-
-        <!-- Bespoke -->
-        <div class="pricing-card reveal reveal-d1">
-          <div class="pricing-badge">Custom</div>
-          <div class="pricing-name">Bespoke&nbsp;/ Brand Campaigns</div>
-          <div class="pricing-price">POA</div>
-          <div class="pricing-price-note">Scoped per project &nbsp;·&nbsp; From $10k</div>
-          <div class="pricing-divider"></div>
-          <div class="pricing-desc">
-            Launches, brand films, multi-month productions. If you have something bigger in mind, let's talk — we'll scope it together.
-          </div>
-          <div class="pricing-detail">Custom timeline and deliverables</div>
+          <ul class="pricing-attrs">
+            <li class="pricing-attr"><span class="attr-label">Capacity</span><span class="attr-value">Custom scope</span></li>
+            <li class="pricing-attr"><span class="attr-label">Channels</span><span class="attr-value">Whatever fits</span></li>
+            <li class="pricing-attr"><span class="attr-label">Reviews</span><span class="attr-value">Weekly working sessions</span></li>
+            <li class="pricing-attr"><span class="attr-label">Comms</span><span class="attr-value">Direct line to both founders</span></li>
+          </ul>
           <div class="pricing-cta">
             <a href="#contact" class="btn-card ghost">Get in touch →</a>
           </div>
@@ -1130,29 +1143,34 @@
 
       </div>
 
-      <!-- Ad spend note -->
-      <div class="spend-note reveal">
-        <strong>A note on ad spend:</strong> Our retainer fees cover creative production and campaign management — ad spend is a separate budget paid directly to the platforms. We recommend <strong>$1,500/mo minimum</strong> for Growth and <strong>$5,000/mo minimum</strong> for Performance. We'll go through this before any commitment is made.
+      <!-- Includes callout -->
+      <div class="pricing-includes reveal">
+        All partnerships include <strong>dedicated Slack or WhatsApp comms</strong>, a <strong>monthly review meeting</strong>, and a <strong>free onboarding kickoff</strong> to align on goals before any production starts. Ad spend is a separate budget paid directly to the platforms.
       </div>
 
-      <!-- Add-ons -->
+      <!-- One-off projects -->
       <div class="reveal">
-        <div class="addons-head">Add-ons</div>
+        <div class="addons-head">One-off projects</div>
         <div class="addons-grid">
           <div class="addon-card">
-            <div class="addon-price">$1,800</div>
-            <div class="addon-name">Shoot Day</div>
-            <div class="addon-desc">One shooter, edited deliverables within 7 days. Great for building a content bank between retainer cycles.</div>
+            <div class="addon-price">from $1,800</div>
+            <div class="addon-name">Content Shoot Day</div>
+            <div class="addon-desc">One shooter, edited deliverables within 7 days. Great for building a content bank fast.</div>
           </div>
           <div class="addon-card">
-            <div class="addon-price">$2,500</div>
+            <div class="addon-price">from $2,500</div>
             <div class="addon-name">Brand Refresh</div>
             <div class="addon-desc">Logo refinement, colour palette, type system, and a simple brand guidelines document.</div>
           </div>
           <div class="addon-card">
-            <div class="addon-price">$750</div>
-            <div class="addon-name">Ad Audit</div>
-            <div class="addon-desc">Written report on your existing Meta or Google account, plus a 30-minute walkthrough call with Tom and Alex.</div>
+            <div class="addon-price">from $3,200</div>
+            <div class="addon-name">Premium Production Day</div>
+            <div class="addon-desc">Full crew, styled set, multiple deliverables. When you need to make a statement.</div>
+          </div>
+          <div class="addon-card">
+            <div class="addon-price">from $4,500</div>
+            <div class="addon-name">Website Sprint</div>
+            <div class="addon-desc">5–7 sections. Copy, design, and development included. Everything to launch a site that converts.</div>
           </div>
         </div>
       </div>
