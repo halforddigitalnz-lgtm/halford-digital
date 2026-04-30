@@ -697,6 +697,8 @@
     .work-item.span2 .work-img { aspect-ratio: 21/9; object-position: center 30%; }
     .work-item:not(.span2) .work-img { aspect-ratio: 4/3; object-position: center top; }
     .work-item:hover .work-img { transform: scale(1.08); opacity: 1; }
+    .work-item video.work-img { aspect-ratio: 4/3; background: var(--elevated); }
+    .work-item:has(video) { background: var(--elevated); }
 
     /* Colour treatment layer — mix-blend-multiply amber tint */
     .work-tint {
@@ -1109,8 +1111,8 @@
       <div class="statement-grid reveal">
         <div class="statement-label">The offer</div>
         <p class="statement-text">
-          One way in: a free 20-min audit. We review your website, ads, and socials beforehand — then walk you through what we see and what we'd do.
-          <em>From there, you pick what you need.</em>
+          Halford Digital makes the content, runs the ads, and grows the business —
+          <em>end-to-end, in-house,</em> for a small number of clients at a time.
         </p>
       </div>
     </div>
@@ -1179,9 +1181,8 @@
       </div>
 
       <p class="pricing-intro reveal">
-        One way in, two ways out. Start with a free 20-min audit —
-        then choose an ongoing partnership or a one-off project.
-        No paid planning, no hoops.
+        Start with a free 20-min audit, then choose an ongoing
+        partnership or a one-off project. No paid planning, no hoops.
       </p>
 
       <!-- Partnership tiers -->
@@ -1294,28 +1295,37 @@
       </div>
       <p class="work-intro reveal">
         A sample of the content we create — shot and edited in-house.
-        From campaign videos to product photography, everything is built to perform.
+        From brand videography to campaign ads, everything is built to perform.
       </p>
       <div class="work-grid">
-        <div class="work-item span2 reveal">
-          <img class="work-img" src="23-04-26-content/062.PNG" alt="Product content">
-          <div class="work-tint"></div>
-          <div class="work-cover">
-            <div class="work-tag">Product Content</div>
-          </div>
-        </div>
         <div class="work-item reveal">
-          <img class="work-img" src="23-04-26-content/018.PNG" alt="Campaign photography">
+          <img class="work-img" src="23-04-26-content/HD%20WEBSITE%209:04%20PORTFOLIO/Ads%20Filming.png" alt="Ads filming on location">
           <div class="work-tint"></div>
           <div class="work-cover">
-            <div class="work-tag">Campaign Photography</div>
+            <div class="work-tag">Ads Filming</div>
           </div>
         </div>
         <div class="work-item reveal reveal-d1">
-          <img class="work-img" src="23-04-26-content/_MG_9967.jpg" alt="Creative direction">
+          <video class="work-img" autoplay muted loop playsinline preload="auto">
+            <source src="23-04-26-content/HD%20WEBSITE%209:04%20PORTFOLIO/Brand%20Videography.MOV" type="video/quicktime">
+          </video>
           <div class="work-tint"></div>
           <div class="work-cover">
-            <div class="work-tag">Creative Direction</div>
+            <div class="work-tag">Brand Videography</div>
+          </div>
+        </div>
+        <div class="work-item reveal reveal-d2">
+          <img class="work-img" src="23-04-26-content/HD%20WEBSITE%209:04%20PORTFOLIO/Premium%20Production.png" alt="Premium production shoot">
+          <div class="work-tint"></div>
+          <div class="work-cover">
+            <div class="work-tag">Premium Production</div>
+          </div>
+        </div>
+        <div class="work-item reveal reveal-d3">
+          <img class="work-img" src="23-04-26-content/HD%20WEBSITE%209:04%20PORTFOLIO/Ads%20Management.png" alt="Campaign ads management">
+          <div class="work-tint"></div>
+          <div class="work-cover">
+            <div class="work-tag">Ads Management</div>
           </div>
         </div>
       </div>
